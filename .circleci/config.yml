@@ -11,4 +11,5 @@ jobs:
       - ruby/install:
           version: "2.6.8"
       - run: ruby -v
+      - ruby/install-deps
       - run: gem -v
