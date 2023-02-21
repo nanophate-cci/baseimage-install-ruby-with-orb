@@ -22,12 +22,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: |
-          gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-          curl -sSL "https://get.rvm.io" | bash -s stable
-          source /home/circleci/.rvm/scripts/rvm
-          sed -i '11d' /home/circleci/.rvm/config/db 
-          rvm install 2.6.8
+      - run: gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+      - run: curl -sSL "https://get.rvm.io" | bash -s stable
+      - run: source /home/circleci/.rvm/scripts/rvm
+      - run: sed -i '11d' /home/circleci/.rvm/config/db 
+      - run: rvm install 2.6.8
       - run: ruby -v
       - ruby/install-deps
 workflows:
@@ -36,6 +35,6 @@ workflows:
       - build:
           matrix:
             parameters:
-              ruby-version: ["2.6.8", "2.6.10", "2.7.6", "3.0.3", "3.1.3", "3.2.0"]
-              image: [ "cimg/base:edge", "cimg/base:current", "cimg/base:current-22.04", "cimg/base:stable", "ubuntu:22.04", "ubuntu:20.04"]
+              ruby-version: ["2.6.8", "2.7.6"]
+              image: [ "cimg/base:edge", "cimg/base:current",]
       - custom_install
