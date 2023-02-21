@@ -1,0 +1,13 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@2.0.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - ruby/install:
+          version: "2.6.8"
+      - ruby -v
